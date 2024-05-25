@@ -6,8 +6,8 @@ function Header() {
     return <nav className="navbar bg-body-tertiary">
     <div className="container-fluid">
       <Link className="navbar-brand" to="/">
-        <img src="../icons/youtube.png" alt="Logo" width="30" height="30" className="d-inline-block align-text-top" />
-        Bootstrap
+        <img src="../youtube.png" alt="Logo" width="30" height="30" className="d-inline-block align-text-top" />
+        Youtube
       </Link>
     </div>
   </nav>

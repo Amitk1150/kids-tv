@@ -1,5 +1,4 @@
 import React from "react";
-import ReactPlayer from "react-player";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
 import "./style.scss";
 
@@ -25,7 +24,6 @@ function Home() {
         <div key={index} className="card text-center">
           <div className="card-body p-0">
             <div className="card-text">
-              {/* <ReactPlayer url={x} width="100%" height="100%" onStart={onStartHandler} /> */}
               <YoutubeEmbed src={x}/>
             </div>
           </div>
