@@ -19,7 +19,7 @@ function Home() {
   }
 
   return (
-    <div className="d-flex justify-content-center flex-column align-items-center ms-sm-2">
+    <div className="d-flex justify-content-center flex-column align-items-center">
       {videos.map((x, index) => (
         <div key={index} className="card text-center">
           <div className="card-body p-0">
@@ -28,7 +28,7 @@ function Home() {
             </div>
           </div>
         </div>
-      ))}
+      ))} 
     </div>
   );
 }
