@@ -1,18 +1,45 @@
-import React from "react";
-import "./style.scss";
+import React, { useEffect, useRef, useState } from "react";
 
-const YoutubeEmbed = ({ src }) => (
-  <div className="video-responsive">
-    <iframe
-      height="314px"
-      width="380px"
-      src={src}
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      title="Embedded youtube"
-    />
-  </div>
-);
+const YoutubeEmbed = ({ src, onPlay, id }) => {
+  const [player, setPlayer] = useState(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const onPlayerReady = (event) => {
+      setPlayer(event.target);
+    };
+
+    const onPlayerStateChange = (event) => {
+      if (event.data === window.YT.PlayerState.PLAYING) {
+        onPlay(event.target);
+      }
+    };
+
+    const loadPlayer = () => {
+      const playerInstance = new window.YT.Player(containerRef.current, {
+        height: "320px",
+        width: "350px",
+        videoId: src.split("/").pop(),
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+        },
+      });
+      setPlayer(playerInstance);
+    };
+
+    if (window.YT && window.YT.Player) {
+      loadPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = loadPlayer;
+    }
+  }, [src, onPlay]);
+
+  return (
+    <div className="video-responsive">
+      <div ref={containerRef} id={`player-${id}`} className="youtube-player" />
+    </div>
+  );
+};
 
 export default YoutubeEmbed;
