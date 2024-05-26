@@ -1,16 +1,85 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
-import './style.scss';
+import { auth, googleProvider } from "../../core/firebase/config";
+import { signInWithPopup } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import "./style.scss";
 
 function Header() {
-    return <nav className="navbar bg-body-tertiary">
-    <div className="container-fluid">
-      <Link className="navbar-brand" to="/">
-        <img src="../youtube.png" alt="Logo" width="30" height="30" className="d-inline-block align-text-top" />
-        Youtube
-      </Link>
-    </div>
-  </nav>
+  const [user] = useAuthState(auth);
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider);
+  };
+
+  const handleLogout = async () => {
+    auth.signOut();
+  }
+
+  return (
+    <nav className="navbar bg-body-tertiary">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          <img
+            src="../youtube.png"
+            alt="Logo"
+            width="30"
+            height="30"
+            className="d-inline-block align-text-top"
+          />
+          <span className="ms-1">Youtube</span>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/">
+                Home
+              </Link>
+            </li>
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/add">
+                    Add
+                  </Link>
+                </li>
+                <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-link nav-link"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-link nav-link"
+                  onClick={loginWithGoogle}
+                >
+                  Login
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Header;
