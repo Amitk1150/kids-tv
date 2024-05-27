@@ -30,12 +30,14 @@ function Home() {
     <>
       {currentVideo && (
         <div className="current-vid">
+          <div className="mx-1">
           <YoutubeEmbed
             key={currentVideo.id}
             src={currentVideo.url}
             id={currentVideo.vidId}
             onPlay={handleOnPlay}
           />
+          </div>
         </div>
       )}
       <div className="video-list mx-1">
