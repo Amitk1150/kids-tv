@@ -18,10 +18,11 @@ const YoutubeEmbed = ({ src, onPlay, id }) => {
     const loadPlayer = () => {
       const playerInstance = new window.YT.Player(containerRef.current, {
         height: "320px",
-        width: "350px",
+        width: "352px",
         playerVars: {
           rel: 0,
-          fs: 0
+          fs: 0,
+          autoplay: 1
         },
         videoId: src.split("/").pop(),
         events: {

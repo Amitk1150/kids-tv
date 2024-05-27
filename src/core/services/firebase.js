@@ -39,14 +39,13 @@ const saveVideo = async (url, userId) => {
       vidId
     );
 
-    const docRef = await addDoc(collection(db, colNames.videos), {
+    await addDoc(collection(db, colNames.videos), {
       youtubeId: vidId,
       thumbnailUrl,
       title,
       addedOnd: new Date(),
       addedBy: userId,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

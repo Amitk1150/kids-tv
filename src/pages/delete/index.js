@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { firebaseService } from "../../core/services";
+import VideoPreview from "../../components/VideoPreview";
 import "./style.scss";
 
 function Delete() {
@@ -23,22 +24,7 @@ function Delete() {
   return (
     <div className="mx-1">
       {videos.map((video, index) => (
-        <div key={video.id} className="d-flex flex-column justify-content-center align-items-center my-2">
-          <div className="vid-title">{video.title}</div>
-          <div>
-            <img className="w-100" src={video.thumbnailUrl} alt={video.title} />
-          </div>
-          <div className="w-100">
-            <button
-              id={video.id}
-              type="button"
-              className="btn btn-danger w-100"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
+        <VideoPreview key={video.id} video={video} onDelete={handleDelete}/>
       ))}
     </div>
   );

@@ -17,7 +17,7 @@ function Header() {
   }
 
   return (
-    <nav className="navbar bg-body-tertiary">
+    <nav className="navbar bg-body-tertiary fixed-top ">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img

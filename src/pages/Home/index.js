@@ -1,22 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
-import { firebaseService } from '../../core/services';
+import VideoPreview from "../../components/VideoPreview";
+import { firebaseService } from "../../core/services";
+import "./style.scss";
 
 function Home() {
-  const playersRef = useRef([]);
   const [videos, setVideos] = useState([]);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
   const getVideos = async () => {
     const result = await firebaseService.getVideos();
+    setCurrentVideo(result[0]);
     setVideos(result);
   };
 
-  const handlePlay = (currentPlayer) => {
-    playersRef.current.forEach((player) => {
-      if (player && player !== currentPlayer) {
-        player.pauseVideo();
-      }
-    });
+  const playHandler = (video) => {
+    setCurrentVideo(video);
+  };
+
+  const handleOnPlay = (currentPlayer) => {
+    console.log(currentPlayer);
   };
 
   useEffect(() => {
@@ -24,24 +27,23 @@ function Home() {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center flex-column align-items-center">
-      {videos.map((video, index) => (
-        <div key={index} className="card text-center">
-          <div className="card-body p-0">
-            <div className="card-text">
-              <YoutubeEmbed
-                src={video.url}
-                id={index}
-                onPlay={(player) => {
-                  playersRef.current[index] = player;
-                  handlePlay(player);
-                }}
-              />
-            </div>
-          </div>
+    <>
+      {currentVideo && (
+        <div className="current-vid">
+          <YoutubeEmbed
+            key={currentVideo.id}
+            src={currentVideo.url}
+            id={currentVideo.vidId}
+            onPlay={handleOnPlay}
+          />
         </div>
-      ))}
-    </div>
+      )}
+      <div className="video-list mx-1">
+        {videos.map((video, index) => (
+          <VideoPreview key={video.id} video={video} onPlay={playHandler}/>
+        ))}
+      </div>
+    </>
   );
 }
 

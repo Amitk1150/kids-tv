@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { commonService } from '../services';
 
 const API_KEY = 'AIzaSyAGHsAEFJLhMB33pdQTjylPzYm3WYLWcAg';
 
