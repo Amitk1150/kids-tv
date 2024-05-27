@@ -44,19 +44,19 @@ function Header() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+              <span data-bs-target="#navbarNav" data-bs-toggle="collapse">Home</span>
               </Link>
             </li>
             {user ? (
               <>
-                <li className="nav-item">
+                <li className="nav-item" >
                   <Link className="nav-link" to="/add">
-                    Add
+                    <span data-bs-target="#navbarNav" data-bs-toggle="collapse">Add</span>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/delete">
-                    Delete
+                    <span data-bs-target="#navbarNav" data-bs-toggle="collapse">Delete</span>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -65,7 +65,7 @@ function Header() {
                   className="btn btn-link nav-link"
                   onClick={handleLogout}
                 >
-                  Logout
+                  <span data-bs-target="#navbarNav" data-bs-toggle="collapse">Logout</span>
                 </button>
                 </li>
               </>

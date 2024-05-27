@@ -22,7 +22,7 @@ function Delete() {
   }, []);
 
   return (
-    <div className="mx-1">
+    <div className="mx-1 mt-5">
       {videos.map((video, index) => (
         <VideoPreview key={video.id} video={video} onDelete={handleDelete}/>
       ))}
