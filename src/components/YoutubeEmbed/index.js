@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./style.scss";
 
 const YoutubeEmbed = ({ src, onPlay, id }) => {
   const [player, setPlayer] = useState(null);
@@ -18,7 +19,7 @@ const YoutubeEmbed = ({ src, onPlay, id }) => {
     const loadPlayer = () => {
       const playerInstance = new window.YT.Player(containerRef.current, {
         height: "320px",
-        width: "352px",
+        width: `${window.innerWidth - 6}px`,
         playerVars: {
           rel: 0,
           fs: 0,
