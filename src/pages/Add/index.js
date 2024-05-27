@@ -3,6 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { auth, db, colNames } from "../../core/firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getYouTubeVidId } from "../../core/helpers/utils";
+import { firebaseService } from '../../core/services';
 
 import "./style.scss";
 
@@ -15,6 +16,8 @@ function Add() {
   };
 
   const saveHandler = async () => {
+    debugger;
+    await firebaseService.saveVideo("ns0GMNw0X0I", user.uid);
     if (url) {
       setUrl("");
       const vidId = getYouTubeVidId(url);

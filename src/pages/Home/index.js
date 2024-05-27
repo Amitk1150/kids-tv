@@ -1,25 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
-import { db, colNames } from "../../core/firebase/config";
-import { collection, query, getDocs } from "firebase/firestore";
-import { getYouTubeVidurl, shuffleArray } from "../../core/helpers/utils";
+import { firebaseService } from '../../core/services';
 
 function Home() {
   const playersRef = useRef([]);
   const [videos, setVideos] = useState([]);
 
   const getVideos = async () => {
-    const q = query(collection(db, colNames.videos));
-
-    const result = [];
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      result.push(getYouTubeVidurl(data.youtubeId));
-    });
-
-
-    setVideos(shuffleArray(result));
+    const result = await firebaseService.getVideos();
+    setVideos(result);
   };
 
   const handlePlay = (currentPlayer) => {

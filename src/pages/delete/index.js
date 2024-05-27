@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
-import { db, colNames } from "../../core/firebase/config";
-import { collection, query, doc, getDocs, deleteDoc } from "firebase/firestore";
-import { getYouTubeVidurl } from "../../core/helpers/utils";
+import { firebaseService } from '../../core/services';
 
 function Delete() {
   const playersRef = useRef([]);
@@ -10,16 +8,7 @@ function Delete() {
 
 
   const getVideos = async () => {
-    const q = query(collection(db, colNames.videos));
-    const result = [];     
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      result.push({
-        id: doc.id,
-        url: getYouTubeVidurl(data.youtubeId)
-      });
-    });
+    const result = await firebaseService.getVideos();
     setVideos(result);
   };
 
@@ -34,7 +23,7 @@ function Delete() {
   const handleDelete = async (e) => {
     const currentId = e.target.id;
     setVideos(videos.filter(x => x.id !== currentId));
-    await deleteDoc(doc(db, colNames.videos, currentId));
+    await firebaseService.deleteVideo(currentId);
   };
 
   useEffect(() => {

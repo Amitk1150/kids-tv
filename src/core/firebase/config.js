@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider  } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnE3KRitPsEhV_U3W14WS-5wnOyP-uoJI",
@@ -17,9 +17,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 const colNames = Object.freeze({
   videos: 'videos'
 })
 
-export { auth, googleProvider, db, colNames };
+export { auth, googleProvider, db, colNames, storage };
