@@ -19,6 +19,9 @@ const YoutubeEmbed = ({ src, onPlay, id }) => {
       const playerInstance = new window.YT.Player(containerRef.current, {
         height: "320px",
         width: "350px",
+        playerVars: {
+          rel: 0,
+        },
         videoId: src.split("/").pop(),
         events: {
           onReady: onPlayerReady,
