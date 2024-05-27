@@ -9,11 +9,12 @@ const fetchVideoDetails = async (videoId) => {
   try {
     const response = await axios.get(url);
     const { title, thumbnails } = response.data.items[0].snippet;
-    const thumbnailUrl = thumbnails.high.url;
-    const thumbnailBlob = await commonService.fetchImageAsBlob(thumbnailUrl);
+    const thumbnailUrl = thumbnails.high.url
+    // const thumbnailUrl = thumbnails.high.url;
+    // const thumbnailBlob = await commonService.fetchImageAsBlob(thumbnailUrl);
     return {
       title,
-      thumbnailBlob,
+      thumbnailUrl,
     };
   } catch (error) {
     console.error('Error fetching video details:', error);

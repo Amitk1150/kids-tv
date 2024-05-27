@@ -1,28 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import YoutubeEmbed from "../../components/YoutubeEmbed";
-import { firebaseService } from '../../core/services';
+import React, { useEffect, useState } from "react";
+import { firebaseService } from "../../core/services";
+import "./style.scss";
 
 function Delete() {
-  const playersRef = useRef([]);
   const [videos, setVideos] = useState([]);
-
 
   const getVideos = async () => {
     const result = await firebaseService.getVideos();
     setVideos(result);
   };
 
-  const handlePlay = (currentPlayer) => {
-    playersRef.current.forEach((player) => {
-      if (player && player !== currentPlayer) {
-        player.pauseVideo();
-      }
-    });
-  };
-
   const handleDelete = async (e) => {
     const currentId = e.target.id;
-    setVideos(videos.filter(x => x.id !== currentId));
+    setVideos(videos.filter((x) => x.id !== currentId));
     await firebaseService.deleteVideo(currentId);
   };
 
@@ -31,22 +21,23 @@ function Delete() {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center flex-column align-items-center">
+    <div className="mx-1">
       {videos.map((video, index) => (
-        <div key={video.id} className="card text-center">
-          <div className="card-body p-0">
-            <div className="card-text">
-              <YoutubeEmbed
-                src={video.url}
-                id={index}
-                onPlay={(player) => {
-                  playersRef.current[index] = player;
-                  handlePlay(player);
-                }}
-              />
-            </div>
+        <div key={video.id} className="d-flex flex-column justify-content-center align-items-center my-2">
+          <div className="vid-title">{video.title}</div>
+          <div>
+            <img className="w-100" src={video.thumbnailUrl} alt={video.title} />
           </div>
-          <div className="card-footer bg-danger"><button id={video.id} type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button></div>
+          <div className="w-100">
+            <button
+              id={video.id}
+              type="button"
+              className="btn btn-danger w-100"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>

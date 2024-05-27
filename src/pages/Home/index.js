@@ -25,12 +25,12 @@ function Home() {
 
   return (
     <div className="d-flex justify-content-center flex-column align-items-center">
-      {videos.map((videoUrl, index) => (
+      {videos.map((video, index) => (
         <div key={index} className="card text-center">
           <div className="card-body p-0">
             <div className="card-text">
               <YoutubeEmbed
-                src={videoUrl}
+                src={video.url}
                 id={index}
                 onPlay={(player) => {
                   playersRef.current[index] = player;

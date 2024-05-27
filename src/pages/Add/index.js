@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { auth, db, colNames } from "../../core/firebase/config";
+import { auth } from "../../core/firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getYouTubeVidId } from "../../core/helpers/utils";
 import { firebaseService } from '../../core/services';
@@ -16,22 +15,10 @@ function Add() {
   };
 
   const saveHandler = async () => {
-    debugger;
-    await firebaseService.saveVideo("ns0GMNw0X0I", user.uid);
     if (url) {
       setUrl("");
       const vidId = getYouTubeVidId(url);
-      console.log("vidId: ", vidId);
-      try {
-        const docRef = await addDoc(collection(db, colNames.videos), {
-          youtubeId: vidId,
-          addedOnd: new Date(),
-          addedBy: user.uid,
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
+      await firebaseService.saveVideo(vidId, user.uid);
     }
   };
 
