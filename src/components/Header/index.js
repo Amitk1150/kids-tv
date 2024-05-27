@@ -27,7 +27,7 @@ function Header() {
             height="30"
             className="d-inline-block align-text-top"
           />
-          <span className="ms-1">Youtube</span>
+          <span className="ms-1">YouTube</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -52,6 +52,11 @@ function Header() {
                 <li className="nav-item">
                   <Link className="nav-link" to="/add">
                     Add
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/delete">
+                    Delete
                   </Link>
                 </li>
                 <li className="nav-item">
