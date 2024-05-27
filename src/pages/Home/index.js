@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
 import { db, colNames } from "../../core/firebase/config";
 import { collection, query, getDocs } from "firebase/firestore";
-import { getYouTubeVidurl } from "../../core/helpers/utils";
+import { getYouTubeVidurl, shuffleArray } from "../../core/helpers/utils";
 
 function Home() {
   const playersRef = useRef([]);
@@ -18,7 +18,8 @@ function Home() {
       result.push(getYouTubeVidurl(data.youtubeId));
     });
 
-    setVideos(result);
+
+    setVideos(shuffleArray(result));
   };
 
   const handlePlay = (currentPlayer) => {
@@ -32,11 +33,6 @@ function Home() {
   useEffect(() => {
     getVideos();
   }, []);
-
-  // const videos = [
-  //   "https://www.youtube.com/embed/PtqevDJz7W8",
-  //   "https://www.youtube.com/embed/LXb3EKWsInQ",
-  // ];
 
   return (
     <div className="d-flex justify-content-center flex-column align-items-center">

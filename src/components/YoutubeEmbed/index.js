@@ -21,6 +21,7 @@ const YoutubeEmbed = ({ src, onPlay, id }) => {
         width: "350px",
         playerVars: {
           rel: 0,
+          fs: 0
         },
         videoId: src.split("/").pop(),
         events: {

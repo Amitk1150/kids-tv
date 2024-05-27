@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { auth, googleProvider } from "../../core/firebase/config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./style.scss";
@@ -9,7 +9,7 @@ import "./style.scss";
 function Header() {
   const [user] = useAuthState(auth);
   const loginWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider);
+    await signInWithRedirect(auth, googleProvider);
   };
 
   const handleLogout = async () => {
