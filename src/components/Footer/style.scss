@@ -1,0 +1,18 @@
+.footer-menu {
+  height: 4rem;
+  .menu-items {
+    margin: 0 0.5rem;
+    min-width: 4rem;
+    .icons {
+      width: 32px;
+      height: 32px;
+    }
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.ytp-pause-overlay-container {
+    display: none;
+}

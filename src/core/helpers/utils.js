@@ -15,4 +15,12 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export { getYouTubeVidId, getYouTubeVidurl, shuffleArray };
+const isShorts = (url) => {
+  url = url.toLowerCase();
+  if (url.indexOf("shorts")) {
+    return true;
+  }
+  return false;
+}
+
+export { getYouTubeVidId, getYouTubeVidurl, shuffleArray, isShorts };
