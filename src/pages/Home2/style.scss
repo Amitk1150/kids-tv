@@ -1,0 +1,30 @@
+.current-vid {
+    position: sticky;
+    width: 100%;
+    height: auto;
+    max-height: 15rem;
+    max-width: 30rem;
+    top: 3.5rem;
+    right: 0;
+    padding: 0;
+    z-index: 100;
+    margin-bottom: 5rem;
+}
+
+.video-list {
+    margin-top: 385px;
+    margin-bottom: 4rem;
+}
+
+
+.player-area {
+    max-height: calc(100vh - 100px);
+    .playing {
+        flex: 68;
+    }
+    .related-items {
+        flex: 32;
+        //max-height: calc(100vh - 310px); /* or a specific height you prefer */
+        overflow-y: auto;
+    }
+}

@@ -5,19 +5,13 @@ import "./style.scss";
 function Footer() {
   return (
     <div className="footer-area w-100 position-fixed bottom-0">
-      <div className="footer-menu py-2 bg-dark bg-gradient d-flex flex-row justify-content-center">
+      <div className="footer-menu py-2 bg-dark bg-gradient d-flex flex-row justify-content-center gap-4">
         <Link to="/">
-          <div className="menu-items d-flex flex-column justify-content-center align-items-center">
-            <img className="icons" src="../../home.svg" alt="Home" />
-            <span className="text-white">Home</span>
-          </div>
+          <img className="icons" src="../../home.svg" alt="Home" />
         </Link>
-        <Link to="/shorts">
-          <div className="menu-items d-flex flex-column justify-content-center align-items-center">
-            <img className="icons" src="../../shorts.svg" alt="Shorts" />
-            <span className="text-white">Shorts</span>
-          </div>
-        </Link>
+        {/* <Link to="/shorts">
+          <img className="icons" src="../../shorts.svg" alt="Shorts" />
+        </Link> */}
       </div>
     </div>
   );

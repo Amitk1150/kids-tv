@@ -4,7 +4,7 @@ import VideoPreview from "../../components/VideoPreview";
 import { firebaseService } from "../../core/services";
 import "./style.scss";
 
-function Home() {
+function Home2() {
   const [videos, setVideos] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(null);
 
@@ -28,26 +28,23 @@ function Home() {
   }, []);
 
   return (
-    <>
-      {currentVideo && (
-        <div className="current-vid">
-          <div className="mx-1">
-          <YoutubeEmbed
+    <div className="container p-0">
+      <div className="player-area d-flex flex-md-row flex-column">
+        <div className="playing">
+          {currentVideo && <YoutubeEmbed
             key={currentVideo.id}
-            src={currentVideo.url}
-            id={currentVideo.vidId}
+            {...currentVideo}
             onPlay={handleOnPlay}
-          />
-          </div>
+          />}
         </div>
-      )}
-      <div className="video-list mx-1">
+        <div className="related-items px-md-2 px-0">
         {videos.map((video, index) => (
           <VideoPreview key={video.id} video={video} onPlay={playHandler}/>
         ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default Home;
+export default Home2;

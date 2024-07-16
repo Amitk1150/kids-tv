@@ -1,14 +1,21 @@
-// .video-responsive {
-//     position: relative;
-//     overflow: hidden;
-//     padding-top: 56.25%; /* 16:9 aspect ratio */
-//   }
-  
-//   .video-responsive .youtube-player {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//   }
-  
+.brand-overide {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 55px;
+    bottom: 0px;
+    background-color: transparent;
+    width: 70px;
+    height: 36px;
+}
+
+.related-overide {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 4%;
+    bottom: 17%;
+    background-color: transparent;
+    width: 93%;
+    height: 20%;
+}
