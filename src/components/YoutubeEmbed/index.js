@@ -7,9 +7,9 @@ const YoutubeEmbed = ({ url, onPlay, id, type, title }) => {
         <iframe
           src={modifiedUrl}
           title={title}
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
+          referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
       <div className="brand-overide"></div>
