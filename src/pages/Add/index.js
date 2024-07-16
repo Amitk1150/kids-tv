@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "../../core/firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getYouTubeVidId } from "../../core/helpers/utils";
 import { firebaseService } from '../../core/services';
 
 import "./style.scss";
@@ -17,8 +16,7 @@ function Add() {
   const saveHandler = async () => {
     if (url) {
       setUrl("");
-      const vidId = getYouTubeVidId(url);
-      await firebaseService.saveVideo(vidId, user.uid);
+      await firebaseService.saveVideo(url, user.uid);
     }
   };
 

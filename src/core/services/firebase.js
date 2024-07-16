@@ -52,6 +52,7 @@ const deleteVideo = async (vidId) => {
 const saveVideo = async (url, userId) => {
   const vidId = getYouTubeVidId(url);
   try {
+    debugger;
     const isShortsType = isShorts(url);
     const existingVid = await getVideo(vidId);
     if (existingVid == null) {
@@ -63,7 +64,7 @@ const saveVideo = async (url, userId) => {
         youtubeId: vidId,
         thumbnailUrl,
         title,
-        addedOnd: new Date(),
+        addedOn: new Date(),
         addedBy: userId,
         isShorts: isShortsType
       });

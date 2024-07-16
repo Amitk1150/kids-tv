@@ -1,6 +1,7 @@
 const getYouTubeVidId = (url) => {
-  url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  return url[2] !== undefined ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+  const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^?&]+)/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
 };
 
 const getYouTubeVidurl = (id) => {
@@ -17,7 +18,7 @@ const shuffleArray = (array) => {
 
 const isShorts = (url) => {
   url = url.toLowerCase();
-  if (url.indexOf("shorts")) {
+  if (url.indexOf("shorts") >= 0) {
     return true;
   }
   return false;
