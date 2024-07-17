@@ -29,7 +29,7 @@ function Home2() {
 
   return (
     <div className="container p-0">
-      <div className="player-area d-flex flex-md-row flex-column">
+      <div className="videos-area d-flex flex-md-row flex-column">
         <div className="playing">
           {currentVideo && <YoutubeEmbed
             key={currentVideo.id}

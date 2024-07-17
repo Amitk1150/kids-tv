@@ -7,7 +7,7 @@ function Delete() {
   const [videos, setVideos] = useState([]);
 
   const getVideos = async () => {
-    const result = await firebaseService.getVideos();
+    const result = await firebaseService.getAllVideos();
     setVideos(result);
   };
 

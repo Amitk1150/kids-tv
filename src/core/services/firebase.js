@@ -13,9 +13,51 @@ import { getYouTubeVidurl, shuffleArray } from "../helpers/utils";
 import { getYouTubeVidId, isShorts } from "../helpers/utils";
 import { youtubeService } from "../services";
 
-const getVideos = async () => {
+const getAllVideos = async () => {
   const videosRef = collection(db, colNames.videos);
   const q = query(videosRef);
+  const result = [];
+  const ids = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    
+    const data = doc.data();
+    ids.push(data.youtubeId);
+    result.push({
+      id: doc.id,
+      url: getYouTubeVidurl(data.youtubeId),
+      vidId: data.youtubeId,
+      thumbnailUrl: data.thumbnailUrl,
+      title: data.title,
+    });
+  });
+  return result;
+};
+
+const getVideos = async () => {
+  const videosRef = collection(db, colNames.videos);
+  const q = query(videosRef, where("isShorts", "==", false));
+  const result = [];
+  const ids = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    
+    const data = doc.data();
+    ids.push(data.youtubeId);
+    result.push({
+      id: doc.id,
+      url: getYouTubeVidurl(data.youtubeId),
+      vidId: data.youtubeId,
+      thumbnailUrl: data.thumbnailUrl,
+      title: data.title,
+    });
+  });
+  return shuffleArray(result);
+};
+
+const getShorts = async () => {
+  const videosRef = collection(db, colNames.videos);
+  const q = query(videosRef, where("isShorts", "==", true));
   const result = [];
   const ids = [];
   const querySnapshot = await getDocs(q);
@@ -77,6 +119,8 @@ const saveVideo = async (url, userId) => {
 const firebaseService = {
   saveVideo,
   getVideos,
+  getAllVideos,
+  getShorts,
   deleteVideo,
 };
 
